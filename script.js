@@ -74,9 +74,6 @@ function parseValue(str) {
 
         
     }
-    console.log("num1: " + num1);
-    console.log("op: " + op);
-    console.log("num2: " + num2);
 
     if (num1 === "") {
         return str;
