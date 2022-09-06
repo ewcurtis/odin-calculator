@@ -111,7 +111,8 @@ op.forEach(button => {
     button.addEventListener("click", e => {
         if (display.length < 19) {
             //if a symbol follows a number makes a note an operation is about to take place
-            if ("+*/".includes(e.target.textContent) && !operator && (display.length > 0 && "0123456789".includes(display.charAt(display.length-1)))) {
+            if ("+*/".includes(e.target.textContent) && !operator && ((display.length > 0 && "0123456789".includes
+            (display.charAt(display.length-1))) || input.textContent === "0")) {
                 operator = true;
                 //if an operator button is pressed after number (operator) number then it calculates the current numbers before
                 //adding the next operator to the input 
@@ -134,6 +135,8 @@ op.forEach(button => {
             } else if ("+*/".includes(e.target.textContent) && display.length === 0) {
                 return;
             }
+
+            if ("+*/".includes(e.target.textContent) && input.textContent === "0" && display === "") display = "0";
 
             display += e.target.textContent;
             input.textContent = display;
@@ -179,5 +182,6 @@ del.addEventListener("click", () => {
 equals.addEventListener("click", () => {
     display = parseValue(display);
     input.textContent = display;
+    if (input.textContent === "0") display = "";
     operator = false;
 })
